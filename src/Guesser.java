@@ -1,4 +1,8 @@
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.io.Console;
+import java.util.Objects;
+import java.util.Scanner;
 
 /**
  * Assignment 1 - Guessing Game
@@ -65,10 +69,24 @@ public class Guesser{
      */
     private String getReply(){
         String reply = null;
+        Scanner scanner = new Scanner(System.in);
         // Write code here which reads a String from the console.
         // As long as it is not a valid reply (one of "T" and "F")
         // write an error message, and read a new reply.
         // When you have gotten a valid reply, return it.
+        // TODO: 2018-11-27 Fix if users inputs 'ctrl+D'
+        try {
+            reply = scanner.nextLine();
+        }
+        catch (Exception e){}
+
+        while (!Objects.equals("F",reply) && !Objects.equals("T",reply)){
+            System.out.println(reply);
+            System.err.println("please answer T or F!");
+
+            try {   reply = scanner.nextLine();  }
+            catch (Exception e){}
+        }
         return reply;
     }
 
